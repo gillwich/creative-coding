@@ -1,6 +1,8 @@
 function setup() {
-  createCanvas(600, 400);
+  let canvas = createCanvas(600, 400);
   background(255, 200, 90);
+  let container = document.getElementById('container');
+  container.insertBefore(canvas.elt, container.firstChild);
 }
 
 let taille = 1;

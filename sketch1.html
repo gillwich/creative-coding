@@ -8,18 +8,63 @@
       html, body{
         margin: 0;
         padding: 0;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-family: system-ui;
+        color: #ff5a5a;
       }
 
-      canvas{
-        display: block;
+      .buttons {
+        background-color: #FFFFFF;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        border-color: #000000;
+        cursor: pointer;
+        font-size: 18px;
+        margin-top: 30px;
       }
+
+      .buttons:hover {
+        background-color: #ff5a5a;
+        border-color: #ff5a5a;
+      }
+
+      a {
+        text-decoration: none;
+        font-weight: bold;
+        color: #000000;
+      }
+
+      a:hover {
+        color: #FFFFFF;
+      }
+
+      #container {
+        display: flex;
+        flex-direction: column;
+      }
+
     </style>
 
   </head>
+
+
   <body>
-    <main>
-      <h1>Check out this cool project</h1>
-    </main>
-    <script src="sketch.js"></script>
+    
+    <h1>Check out this cool project</h1>
+
+    <script src="sketch1.js"></script>
+
+    <div id="container">
+      <button class="buttons"><a href="sketch1.html">Next Project</a></button>
+    </div>
+
   </body>
+
+
+
 </html>
