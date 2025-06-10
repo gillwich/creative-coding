@@ -2,8 +2,10 @@ let buildings = [];
 let stars = [];
 
 function setup() {
-  createCanvas(600, 400);
-  // Generate buildings
+  let canvas = createCanvas(600, 400);
+  let container = document.getElementById('container');
+  container.insertBefore(canvas.elt, container.firstChild);
+  
   let x = 0;
   while (x < width) {
     let bWidth = random(40, 80);
@@ -12,7 +14,6 @@ function setup() {
     x += bWidth + random(5, 15);
   }
 
-  // Generate stars
   for (let i = 0; i < 100; i++) {
     stars.push({
       x: random(width),
@@ -28,7 +29,6 @@ function setup() {
 function draw() {
   background(10, 10, 30);
 
-  // Draw stars
   noStroke();
   for (let star of stars) {
     let b = star.brightness + 50 * sin(frameCount * star.twinkleSpeed + star.phase);
@@ -36,7 +36,6 @@ function draw() {
     circle(star.x, star.y, star.size);
   }
 
-  // Draw buildings
   for (let b of buildings) {
     b.display();
   }
@@ -49,7 +48,6 @@ class Building {
     this.w = w;
     this.h = h;
 
-    // Generate windows grid
     this.windowCols = floor(this.w / 15);
     this.windowRows = floor(this.h / 20);
     this.windows = [];
@@ -57,18 +55,16 @@ class Building {
     for (let i = 0; i < this.windowCols; i++) {
       this.windows[i] = [];
       for (let j = 0; j < this.windowRows; j++) {
-        this.windows[i][j] = random() < 0.5; // initially some windows on
+        this.windows[i][j] = random() < 0.5; 
       }
     }
   }
 
   display() {
-    // Building body
     noStroke();
     fill(40, 40, 60);
     rect(this.x, this.y, this.w, this.h);
 
-    // Windows
     let windowW = this.w / this.windowCols * 0.6;
     let windowH = this.h / this.windowRows * 0.6;
     let paddingX = (this.w / this.windowCols - windowW) / 2;
@@ -76,7 +72,6 @@ class Building {
 
     for (let i = 0; i < this.windowCols; i++) {
       for (let j = 0; j < this.windowRows; j++) {
-        // Blink windows randomly
         if (random() < 0.005) {
           this.windows[i][j] = !this.windows[i][j];
         }

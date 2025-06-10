@@ -1,5 +1,7 @@
 function setup() {
-  createCanvas(400, 400);
+  let canvas = createCanvas(400, 400);
+  let container = document.getElementById('container');
+  container.insertBefore(canvas.elt, container.firstChild);
 }
 
 function draw() {

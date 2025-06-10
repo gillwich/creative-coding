@@ -1,7 +1,9 @@
 function setup() {
-  createCanvas(600, 600);
+  let canvas = createCanvas(600, 600);
   background(255);
   rectMode(CENTER);
+  let container = document.getElementById('container');
+  container.insertBefore(canvas.elt, container.firstChild);
 
   let cols = 12;
   let rows = 12;

@@ -2,10 +2,11 @@ let sun;
 let planets = [];
 
 function setup() {
-  createCanvas(800, 800);
+  let canvas = createCanvas(600, 600);
+  let container = document.getElementById('container');
+  container.insertBefore(canvas.elt, container.firstChild);
   sun = new CelestialBody(0, 0, 50, color(255, 204, 0), 0);
 
-  // Create planets with: distance from sun, size, orbit speed, number of moons
   planets.push(new Planet(120, 20, 0.01, 1));
   planets.push(new Planet(180, 30, 0.007, 2));
   planets.push(new Planet(250, 25, 0.005, 0));
@@ -35,7 +36,6 @@ class CelestialBody {
   display() {
     push();
     noStroke();
-    // Glow effect
     for (let i = 10; i > 0; i--) {
       fill(red(this.col), green(this.col), blue(this.col), 10);
       ellipse(this.pos.x, this.pos.y, this.size + i * 10);
@@ -78,7 +78,6 @@ class Planet extends CelestialBody {
   display() {
     super.display();
 
-    // Draw moons
     for (let moon of this.moons) {
       push();
       noStroke();

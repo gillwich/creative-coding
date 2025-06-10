@@ -1,5 +1,7 @@
 function setup() {
-  createCanvas(600, 600);
+  let canvas = createCanvas(600, 600);
+  let container = document.getElementById('container');
+  container.insertBefore(canvas.elt, container.firstChild);
   background(0);
   noStroke();
   fill(255);
@@ -11,17 +13,15 @@ function setup() {
   translate(width / 2, height / 2);
 
   for (let i = 0; i < rows; i++) {
-    let theta = map(i, 0, rows - 1, 0, PI); // latitude
+    let theta = map(i, 0, rows - 1, 0, PI);
 
     for (let j = 0; j < cols; j++) {
-      let phi = map(j, 0, cols, 0, TWO_PI); // longitude
+      let phi = map(j, 0, cols, 0, TWO_PI); 
 
-      // Spherical coordinates to 2D projection
       let x = radius * sin(theta) * cos(phi);
       let y = radius * sin(theta) * sin(phi);
       let z = radius * cos(theta);
 
-      // Simulate shading by using Z-depth
       let brightness = map(z, -radius, radius, 50, 255);
       let size = map(z, -radius, radius, 0.5, 4);
 

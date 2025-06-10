@@ -3,12 +3,14 @@ let maxRadius = 50;
 let growthSpeedSlider;
 
 let baseHue;
-let harmonyOffsets = [0, 30, 60]; // analogous scheme (you can change to [0, 180] for complementary)
+let harmonyOffsets = [0, 30, 60]; 
 
 function setup() {
-  createCanvas(600, 600);
+  let canvas = createCanvas(600, 600);
   colorMode(HSB, 360, 100, 100, 100);
   background(20);
+  let container = document.getElementById('container');
+  container.insertBefore(canvas.elt, container.firstChild);
 
   growthSpeedSlider = createSlider(0.1, 3, 0.5, 0.1);
   growthSpeedSlider.position(10, height + 10);
@@ -22,20 +24,19 @@ function draw() {
 
   let growthSpeed = growthSpeedSlider.value();
 
-  // Try to add a new circle until 500 failed attempts in a row to stop
+  
   let attempts = 0;
   let maxAttempts = 500;
   while (attempts < maxAttempts) {
     let newCircle = createCircle();
     if (newCircle) {
       circles.push(newCircle);
-      break; // success, break the while
+      break; 
     } else {
       attempts++;
     }
   }
 
-  // Update and draw circles
   for (let c of circles) {
     if (c.growing) {
       if (c.edges()) {
@@ -56,7 +57,6 @@ function draw() {
     c.show();
   }
 
-  // Draw slider label
   noStroke();
   fill(255);
   textSize(14);
@@ -69,10 +69,9 @@ function createCircle() {
   for (let c of circles) {
     let d = dist(x, y, c.x, c.y);
     if (d < c.r + 2) {
-      return null; // overlaps, fail immediately
+      return null; 
     }
   }
-  // Pick a harmonious color hue cycling through harmonyOffsets
   let hueIndex = circles.length % harmonyOffsets.length;
   let hue = (baseHue + harmonyOffsets[hueIndex]) % 360;
   return new Circle(x, y, hue);

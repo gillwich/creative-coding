@@ -1,27 +1,28 @@
 function setup() {
-  createCanvas(600, 600);
-  background('#f06555'); // Soft red background
+  let canvas = createCanvas(600, 600);
+  let container = document.getElementById('container');
+  container.insertBefore(canvas.elt, container.firstChild);
+  background('#f06555');
   noFill();
-  stroke(50, 0, 80, 80); // Semi-transparent purple
+  stroke(50, 0, 80, 80); 
   strokeWeight(1.5);
 
   let radius = 150;
-  let numPoints = 7; // Number of points in the radial pattern
+  let numPoints = 7; 
 
   translate(width / 2, height / 2);
 
-  // Draw transparent circles around the center
   for (let i = 0; i < numPoints; i++) {
     let angle = TWO_PI / numPoints * i;
     let x = radius * cos(angle);
     let y = radius * sin(angle);
     
-    fill(50, 0, 80, 50); // Transparent fill
+    fill(50, 0, 80, 50); 
     noStroke();
     circle(x, y, 100);
   }
 
-  // Draw inner web of lines
+  
   stroke(50, 0, 80, 80);
   noFill();
   beginShape();
@@ -33,7 +34,6 @@ function setup() {
   }
   endShape(CLOSE);
 
-  // Draw more inner connections
   for (let i = 0; i < numPoints; i++) {
     let angle1 = TWO_PI / numPoints * i;
     let x1 = radius * cos(angle1);
@@ -46,7 +46,6 @@ function setup() {
     }
   }
 
-  // Draw central overlapping shape
   for (let r = radius * 0.6; r > 10; r *= 0.7) {
     beginShape();
     for (let i = 0; i < numPoints; i++) {

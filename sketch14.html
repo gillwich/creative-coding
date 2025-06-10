@@ -5,11 +5,54 @@
     <script src="https://cdn.jsdelivr.net/npm/p5@1.11.7/lib/addons/p5.sound.min.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
     <meta charset="utf-8" />
+    <style>
+      html, body{
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-family: system-ui;
+        color: black;
+      }
+
+      .buttons {
+        padding: 10px 20px;
+        background-color: white;
+        color: black;
+        text-decoration: none;
+        border: 2px solid;
+        border-radius: 5px;
+        font-weight: bold;
+        align-items: center;
+        margin-top: 20px;
+      }
+
+      .buttons:hover {
+        background-color:black;
+        color: #FFFFFF;
+      }
+
+      #container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+    </style>
 
   </head>
+
   <body>
-    <main>
-    </main>
+    <h1>Straight from the X-Files</h1>
+
     <script src="sketch14.js"></script>
+
+    <div id="container">
+      <a href="sketch15.html" class="buttons">Next Project</a>
+    </div>
   </body>
 </html>

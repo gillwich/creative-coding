@@ -2,13 +2,15 @@ let particles = [];
 let gravity;
 
 function setup() {
-  createCanvas(600, 600);
-  gravity = createVector(0, 0.05); // constant downward acceleration
+  let canvas = createCanvas(600, 600);
+  gravity = createVector(0, 0.05); 
   background(10);
+  let container = document.getElementById('container');
+  container.insertBefore(canvas.elt, container.firstChild);
 }
 
 function draw() {
-  background(10, 10, 30, 25); // semi-transparent for trails
+  background(10, 10, 30, 25); 
 
   for (let i = particles.length - 1; i >= 0; i--) {
     let p = particles[i];
@@ -21,7 +23,7 @@ function draw() {
   }
 }
 
-// Click to launch a firework
+
 function mousePressed() {
   for (let i = 0; i < 100; i++) {
     particles.push(new Particle(mouseX, mouseY));
@@ -31,8 +33,8 @@ function mousePressed() {
 class Particle {
   constructor(x, y) {
     this.pos = createVector(x, y);
-    this.vel = p5.Vector.random2D(); // random direction
-    this.vel.mult(random(1, 5));     // random speed
+    this.vel = p5.Vector.random2D(); 
+    this.vel.mult(random(1, 5));     
     this.acc = gravity.copy();
     this.lifespan = 255;
     this.color = color(random(255), random(255), random(255));
@@ -45,7 +47,7 @@ class Particle {
   update() {
     this.vel.add(this.acc);
     this.pos.add(this.vel);
-    this.acc.mult(0); // clear acceleration
+    this.acc.mult(0); 
     this.lifespan -= 4;
   }
 

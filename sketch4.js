@@ -7,8 +7,10 @@ function preload(){
 
 
 function setup() {
-  createCanvas(400, 400);
+  let canvas = createCanvas(400, 400);
   background(220);
+  let container = document.getElementById('container');
+  container.insertBefore(canvas.elt, container.firstChild);
   
   image(myImageBis, 0, 0);
   

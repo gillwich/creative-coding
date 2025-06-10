@@ -1,14 +1,16 @@
 function setup() {
-  createCanvas(600, 600);
+  let canvas = createCanvas(600, 600);
   angleMode(DEGREES);
   stroke(80, 50, 20);
+  let container = document.getElementById('container');
+  container.insertBefore(canvas.elt, container.firstChild);
 }
 
 function draw() {
   background(230, 240, 255);
 
-  let angle = map(mouseX, 0, width, 10, 50);    // Angle between branches
-  let shrink = map(mouseY, 0, height, 0.6, 0.85); // Shrink factor per level
+  let angle = map(mouseX, 0, width, 10, 50); 
+  let shrink = map(mouseY, 0, height, 0.6, 0.85); 
 
   translate(width / 2, height);
   drawBranch(120, angle, shrink);

@@ -1,7 +1,9 @@
 let particles = [];
 
 function setup() {
-  createCanvas(600, 600);
+  let canvas = createCanvas(600, 600);
+  let container = document.getElementById('container');
+  container.insertBefore(canvas.elt, container.firstChild);
   for (let i = 0; i < 100; i++) {
     particles.push(new Particle(random(width), random(height)));
   }
@@ -12,10 +14,10 @@ function draw() {
 
   for (let p of particles) {
     let mouse = createVector(mouseX, mouseY);
-    let force = p5.Vector.sub(mouse, p.pos); // attraction force
-    let distance = constrain(force.mag(), 5, 100); // avoid explosion near cursor
+    let force = p5.Vector.sub(mouse, p.pos); 
+    let distance = constrain(force.mag(), 5, 100); 
     force.normalize();
-    let strength = 100 / (distance * distance); // inverse square
+    let strength = 100 / (distance * distance); 
     force.mult(strength);
 
     p.applyForce(force);
@@ -33,7 +35,6 @@ class Particle {
   }
 
   applyForce(force) {
-    // Newton's 2nd Law: F = ma → a = F / m
     let f = p5.Vector.div(force, this.mass);
     this.acc.add(f);
   }
@@ -41,7 +42,7 @@ class Particle {
   update() {
     this.vel.add(this.acc);
     this.pos.add(this.vel);
-    this.acc.mult(0); // clear acceleration
+    this.acc.mult(0); 
   }
 
   show() {

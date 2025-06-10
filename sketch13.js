@@ -24,9 +24,11 @@ let canvasHeight = 500; //fixed the canvas sizing
 
 //canvas setup
 function setup() {
-  createCanvas(canvasWidth, canvasHeight);
+  let canvas = createCanvas(canvasWidth, canvasHeight);
   rectMode(CENTER);
   background(250);
+  let container = document.getElementById('container');
+  container.insertBefore(canvas.elt, container.firstChild);
 }
 
 function draw() {

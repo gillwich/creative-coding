@@ -1,20 +1,21 @@
 let particles = [];
 
 function setup() {
-  createCanvas(400, 400);
+  let canvas = createCanvas(400, 400);
+  let container = document.getElementById('container');
+  container.insertBefore(canvas.elt, container.firstChild);
 }
 
 function draw() {
   background(20);
 
-  // Add new particle each frame at random x top
   if (frameCount % 5 === 0) {
     particles.push(new Particle(random(width), 0));
   }
 
   for (let i = particles.length - 1; i >= 0; i--) {
     let p = particles[i];
-    p.applyForce(createVector(0, 0.2)); // gravity
+    p.applyForce(createVector(0, 0.2)); 
     p.update();
     p.display();
 
@@ -42,10 +43,9 @@ class Particle {
     this.pos.add(this.vel);
     this.acc.mult(0);
 
-    // Bounce on bottom
     if (this.pos.y + this.size / 2 > height) {
       this.pos.y = height - this.size / 2;
-      this.vel.y *= -0.6; // lose some energy on bounce
+      this.vel.y *= -0.6;
     }
   }
 
