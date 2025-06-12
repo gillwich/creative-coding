@@ -1,29 +1,21 @@
 let circles = [];
 let maxRadius = 50;
-let growthSpeedSlider;
-
 let baseHue;
 let harmonyOffsets = [0, 30, 60]; 
 
 function setup() {
   let canvas = createCanvas(600, 600);
-  colorMode(HSB, 360, 100, 100, 100);
-  background(20);
   let container = document.getElementById('container');
   container.insertBefore(canvas.elt, container.firstChild);
-
-  growthSpeedSlider = createSlider(0.1, 3, 0.5, 0.1);
-  growthSpeedSlider.position(10, height + 10);
-  growthSpeedSlider.style('width', '200px');
-
+  colorMode(HSB, 360, 100, 100, 100);
+  background(20);
   baseHue = random(360);
 }
 
 function draw() {
   background(20);
 
-  let growthSpeed = growthSpeedSlider.value();
-
+  let growthSpeed = 0.5; 
   
   let attempts = 0;
   let maxAttempts = 500;
@@ -31,7 +23,7 @@ function draw() {
     let newCircle = createCircle();
     if (newCircle) {
       circles.push(newCircle);
-      break; 
+      break;
     } else {
       attempts++;
     }
@@ -56,11 +48,6 @@ function draw() {
     c.grow(growthSpeed);
     c.show();
   }
-
-  noStroke();
-  fill(255);
-  textSize(14);
-  text('Growth speed: ' + growthSpeed.toFixed(1), growthSpeedSlider.x * 1.5 + growthSpeedSlider.width, height + 25);
 }
 
 function createCircle() {
@@ -69,7 +56,7 @@ function createCircle() {
   for (let c of circles) {
     let d = dist(x, y, c.x, c.y);
     if (d < c.r + 2) {
-      return null; 
+      return null;
     }
   }
   let hueIndex = circles.length % harmonyOffsets.length;

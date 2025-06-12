@@ -19,10 +19,3 @@ function draw() {
   circle(mouseX, mouseY, 50);
 }
 
-
-
-function keyPressed(){
-  if(key == "s"){
-   save("drawing.png"); 
-  }
-}

@@ -23,18 +23,16 @@ function draw() {
   let rows = 8;
   let cellSize = 50;
   
-  let speed = 0.1; // Speed of the wave
-  let offset = 0.5; // Offset to create a diagonal wave effect
+  let speed = 0.1; 
+  let offset = 0.5; 
 
   for (let y = 0; y < rows; y++) {
     for (let x = 0; x < cols; x++) {
-      noStroke();
       
-      // Use sin() function to animate colors in a wave pattern
-      let wave = sin(frameCount * speed + (x + y) * offset); // Wave calculation
-      let brightness = map(wave, -1, 1, 50, 255); // Map wave values to color brightness
+      let wave = sin(frameCount * speed + (x + y) * offset); 
+      let brightness = map(wave, -1, 1, 50, 255); 
       
-      fill(x * 32, brightness, y * 32); // Dynamic color
+      fill(x * 32, brightness, y * 32); 
       square(x * cellSize, y * cellSize, cellSize);
     }
   }
